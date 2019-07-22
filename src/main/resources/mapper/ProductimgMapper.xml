@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.IProductimgDao" >
+  <resultMap id="BaseResultMap" type="com.entity.Productimg" >
+    <id column="imgId" property="imgid" jdbcType="INTEGER" />
+    <result column="imgName" property="imgname" jdbcType="VARCHAR" />
+    <result column="imgSrc" property="imgsrc" jdbcType="VARCHAR" />
+    <result column="isBig" property="isbig" jdbcType="INTEGER" />
+    <result column="productId" property="productid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    imgId, imgName, imgSrc, isBig, productId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from productimg
+    where imgId = #{imgid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from productimg
+    where imgId = #{imgid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.Productimg" >
+    insert into productimg (imgId, imgName, imgSrc, 
+      isBig, productId)
+    values (#{imgid,jdbcType=INTEGER}, #{imgname,jdbcType=VARCHAR}, #{imgsrc,jdbcType=VARCHAR}, 
+      #{isbig,jdbcType=INTEGER}, #{productid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.Productimg" >
+    insert into productimg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="imgid != null" >
+        imgId,
+      </if>
+      <if test="imgname != null" >
+        imgName,
+      </if>
+      <if test="imgsrc != null" >
+        imgSrc,
+      </if>
+      <if test="isbig != null" >
+        isBig,
+      </if>
+      <if test="productid != null" >
+        productId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="imgid != null" >
+        #{imgid,jdbcType=INTEGER},
+      </if>
+      <if test="imgname != null" >
+        #{imgname,jdbcType=VARCHAR},
+      </if>
+      <if test="imgsrc != null" >
+        #{imgsrc,jdbcType=VARCHAR},
+      </if>
+      <if test="isbig != null" >
+        #{isbig,jdbcType=INTEGER},
+      </if>
+      <if test="productid != null" >
+        #{productid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.Productimg" >
+    update productimg
+    <set >
+      <if test="imgname != null" >
+        imgName = #{imgname,jdbcType=VARCHAR},
+      </if>
+      <if test="imgsrc != null" >
+        imgSrc = #{imgsrc,jdbcType=VARCHAR},
+      </if>
+      <if test="isbig != null" >
+        isBig = #{isbig,jdbcType=INTEGER},
+      </if>
+      <if test="productid != null" >
+        productId = #{productid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where imgId = #{imgid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.Productimg" >
+    update productimg
+    set imgName = #{imgname,jdbcType=VARCHAR},
+      imgSrc = #{imgsrc,jdbcType=VARCHAR},
+      isBig = #{isbig,jdbcType=INTEGER},
+      productId = #{productid,jdbcType=VARCHAR}
+    where imgId = #{imgid,jdbcType=INTEGER}
+  </update>
+</mapper>

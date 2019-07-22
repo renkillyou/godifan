@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.IProductkindDao" >
+  <resultMap id="BaseResultMap" type="com.entity.Productkind" >
+    <id column="kindId" property="kindid" jdbcType="INTEGER" />
+    <result column="kindName" property="kindname" jdbcType="VARCHAR" />
+    <collection property="productserieses" ofType="com.entity.Productseries" column="kindId" javaType="java.util.List">
+      <id column="seriesId" property="seriesid" jdbcType="INTEGER" />
+      <result column="seriesName" property="seriesname" jdbcType="VARCHAR" />
+      <result column="seriesImg" property="seriesimg" jdbcType="VARCHAR" />
+      <result column="kindId" property="kindid" jdbcType="INTEGER" />
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    kindId, kindName
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap">
+    SELECT * FROM
+	productkind k LEFT JOIN productseries s
+	ON k.kindId = s.kindId ORDER BY k.kindId
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from productkind
+    where kindId = #{kindid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from productkind
+    where kindId = #{kindid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.Productkind" >
+    insert into productkind (kindId, kindName)
+    values (#{kindid,jdbcType=INTEGER}, #{kindname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.Productkind" >
+    insert into productkind
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="kindid != null" >
+        kindId,
+      </if>
+      <if test="kindname != null" >
+        kindName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="kindid != null" >
+        #{kindid,jdbcType=INTEGER},
+      </if>
+      <if test="kindname != null" >
+        #{kindname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.Productkind" >
+    update productkind
+    <set >
+      <if test="kindname != null" >
+        kindName = #{kindname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where kindId = #{kindid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.Productkind" >
+    update productkind
+    set kindName = #{kindname,jdbcType=VARCHAR}
+    where kindId = #{kindid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.IGdvCarDao" >
+  <resultMap id="BaseResultMap" type="com.entity.GdvCar" >
+    <id column="c_id" property="cId" jdbcType="INTEGER" />
+    <result column="user_Id" property="userId" jdbcType="INTEGER" />
+    <result column="productId" property="productid" jdbcType="VARCHAR" />
+    <result column="productPrice" property="productprice" jdbcType="INTEGER" />
+    <result column="productName" property="productname" jdbcType="VARCHAR" />
+    <result column="imgSrc" property="imgsrc" jdbcType="VARCHAR" />
+    <result column="c_number" property="cNumber" jdbcType="INTEGER" />
+    <result column="c_price" property="cPrice" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    c_id, user_Id, productId, productPrice, productName, imgSrc, c_number, c_price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gdv_car
+    where c_id = #{cId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gdv_car
+    where c_id = #{cId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.GdvCar" >
+    insert into gdv_car (c_id, user_Id, productId, 
+      productPrice, productName, imgSrc, 
+      c_number, c_price)
+    values (#{cId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{productid,jdbcType=VARCHAR}, 
+      #{productprice,jdbcType=INTEGER}, #{productname,jdbcType=VARCHAR}, #{imgsrc,jdbcType=VARCHAR}, 
+      #{cNumber,jdbcType=INTEGER}, #{cPrice,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.GdvCar" >
+    insert into gdv_car
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cId != null" >
+        c_id,
+      </if>
+      <if test="userId != null" >
+        user_Id,
+      </if>
+      <if test="productid != null" >
+        productId,
+      </if>
+      <if test="productprice != null" >
+        productPrice,
+      </if>
+      <if test="productname != null" >
+        productName,
+      </if>
+      <if test="imgsrc != null" >
+        imgSrc,
+      </if>
+      <if test="cNumber != null" >
+        c_number,
+      </if>
+      <if test="cPrice != null" >
+        c_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cId != null" >
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="productid != null" >
+        #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="productprice != null" >
+        #{productprice,jdbcType=INTEGER},
+      </if>
+      <if test="productname != null" >
+        #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="imgsrc != null" >
+        #{imgsrc,jdbcType=VARCHAR},
+      </if>
+      <if test="cNumber != null" >
+        #{cNumber,jdbcType=INTEGER},
+      </if>
+      <if test="cPrice != null" >
+        #{cPrice,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.GdvCar" >
+    update gdv_car
+    <set >
+      <if test="userId != null" >
+        user_Id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="productid != null" >
+        productId = #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="productprice != null" >
+        productPrice = #{productprice,jdbcType=INTEGER},
+      </if>
+      <if test="productname != null" >
+        productName = #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="imgsrc != null" >
+        imgSrc = #{imgsrc,jdbcType=VARCHAR},
+      </if>
+      <if test="cNumber != null" >
+        c_number = #{cNumber,jdbcType=INTEGER},
+      </if>
+      <if test="cPrice != null" >
+        c_price = #{cPrice,jdbcType=BIGINT},
+      </if>
+    </set>
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.GdvCar" >
+    update gdv_car
+    set user_Id = #{userId,jdbcType=INTEGER},
+      productId = #{productid,jdbcType=VARCHAR},
+      productPrice = #{productprice,jdbcType=INTEGER},
+      productName = #{productname,jdbcType=VARCHAR},
+      imgSrc = #{imgsrc,jdbcType=VARCHAR},
+      c_number = #{cNumber,jdbcType=INTEGER},
+      c_price = #{cPrice,jdbcType=BIGINT}
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+</mapper>

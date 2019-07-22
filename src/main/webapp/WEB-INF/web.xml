@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID" version="3.0">
+  <display-name>godifan</display-name>
+
+  <!--<filter>
+    <filter-name>doFilter</filter-name>&lt;!&ndash;过滤器的方法名&ndash;&gt;
+    <filter-class>com.action.PageFilter</filter-class>&lt;!&ndash;包名.类名&ndash;&gt;
+  </filter>
+  <filter-mapping>
+    <filter-name>doFilter</filter-name>&lt;!&ndash;方法名&ndash;&gt;
+    &lt;!&ndash;定义规则&ndash;&gt;
+    <url-pattern>/*</url-pattern>
+    &lt;!&ndash;定义需要走过滤器的对象，此时是对所有url都必须走过滤器。如果只需要对jsp进行过滤，name就把/*换成/*.jsp，对于其他后缀也是一样&ndash;&gt;
+  </filter-mapping>-->
+
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+</web-app>
